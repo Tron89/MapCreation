@@ -1,14 +1,12 @@
-
+# Screen
+caption = "Map"
 width = 400
 heigth =  400
 
+# Cells
+cell_width = 30
+cell_height = 30
 
-gridWidth = 10
-gridHeight = 10
+rows = 10
+columns = 10
 
-
-rows = 3
-
-columns = 4
-
-caption = "Mapa"

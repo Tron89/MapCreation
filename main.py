@@ -1,73 +1,47 @@
-"""
-    This will be the main for a map creator
-"""
+# This will be the main for a map creator
 
 import pygame
 from pygame.sprite import Sprite
 import parameters
 from map import Map
+from grid import Grid
+
 Map = Map()
-from screen import Screen
-Screen = Screen()
+Grid = Grid()
 
-
-
-
-
-
-
-
-class Player(pygame.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
-        self.image = pygame.image.load('./img/car.png') # Load the player image
-        self.rect = self.image.get_rect() # Get the player's rectangle
-        self.rect.x = 100 # Set the player's x position
-        self.rect.y = 100 # Set the player's y position
-
-player = Player()
-all_sprites = pygame.sprite.Group()
-all_sprites.add(player)
-
-
-
-
-
-
-
+# Create the window
 width, heigth = parameters.width, parameters.heigth
 screen = pygame.display.set_mode((width, heigth))
 clock = pygame.time.Clock()
 
-
-
-clock.tick(30) # fps at it will go
-
 while True:
+    clock.tick(60) # fps at it will go
 
     frame_rate = str(int(clock.get_fps()))
-    pygame.display.set_caption(parameters.caption + " - FPS:"+frame_rate)
+    pygame.display.set_caption(parameters.caption + " - FPS:" + frame_rate)
 
+    # --- EVENTS
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+
+    # --- /EVENTS
 
     # --- LOGIC
 
     Map.update()
 
-    # --- LOGIC
+    Grid.update(Map)
 
-    
+    # --- /LOGIC
+
     screen.fill((255, 255, 255)) 
 
     # --- SCREEN
 
-    Screen.update(screen)
+    Grid.draw(screen)
 
-    all_sprites.draw(screen)
-
-    # --- SCREEN
+    # --- /SCREEN
 
     pygame.display.flip()
     clock.tick()
