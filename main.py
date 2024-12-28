@@ -15,7 +15,7 @@ screen = pygame.display.set_mode((width, heigth))
 clock = pygame.time.Clock()
 
 while True:
-    clock.tick(60) # fps at it will go
+    clock.tick(parameters.fps) # fps at it will go
 
     frame_rate = str(int(clock.get_fps()))
     pygame.display.set_caption(parameters.caption + " - FPS:" + frame_rate)
